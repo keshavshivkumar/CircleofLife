@@ -1,6 +1,8 @@
 # environment for Circle of Life
 import random
+from typing import Tuple
 import global_variables as g_v
+from entities import Agent, Predator,Prey
 
 class Node:
     def __init__(self, pos, agent = False, prey = False, predator = False) -> None:
@@ -71,7 +73,36 @@ class Graph:
         self.graph_nodes : list[Node] = []
         self.init_nodes()
         self.make_circle()
-        self.add_new_edges()   
+        self.add_new_edges()
+
+    def get_random_positions(self):
+        positions = list(range(g_v.Number_of_nodes))
+        prey_pos = random.choice(positions)
+        pred_pos = random.choice(positions)
+
+        positions.remove(prey_pos)
+        if pred_pos in positions:
+            pred_pos.remove(pred_pos)
+        
+        agent_pos = random.choice(positions)
+
+        return (prey_pos, pred_pos, agent_pos)
+
+ 
+    def spawn_entities(self, agent: Agent):
+        prey_pos, pred_pos, agent_pos = self.get_random_positions()
+
+        self.graph_nodes[prey_pos].prey = True
+        self.prey = Prey(self.graph_nodes[prey_pos])
+
+        self.graph_nodes[pred_pos].predator = True
+        self.prey = Predator(self.graph_nodes[pred_pos])
+
+        self.graph_nodes[agent_pos].agent = True
+        self.agent = agent
+        self.agent.node = self.graph_nodes[agent_pos]
+
+
 
 def main():
     g = Graph()

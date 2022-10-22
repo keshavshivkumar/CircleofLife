@@ -1,5 +1,14 @@
+from abc import abstractmethod
 import random
 from graph_utils import bfs
+
+class Agent:
+    def __init__(self, node = None) -> None:
+        self.node = node
+
+    @abstractmethod
+    def move(self) -> None:
+        pass
 
 class Prey:
     def __init__(self, node) -> None:
