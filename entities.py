@@ -1,6 +1,6 @@
 from abc import abstractmethod
 import random
-from graph_utils import bfs
+from graph_utils import pred_bfs
 
 class Agent:
     def __init__(self, node = None) -> None:
@@ -27,7 +27,7 @@ class Predator:
         self.node = node
 
     def move(self):
-        path = bfs(self.node)
+        path = pred_bfs(self.node)
         self.node.predator = False
         self.node = path[-2]
         self.node.predator = True

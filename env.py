@@ -17,13 +17,13 @@ class Node:
 
 class Graph:
     def init_nodes(self):
-        #create new nodes
+        # create new nodes
         for i in range(self.numNodes):
             new_node = Node(i)
             self.graph_nodes.append(new_node)
     
     def make_circle(self):
-        #adds prev and next neighbor to each node
+        # adds prev and next neighbor to each node
         for i,node in enumerate(self.graph_nodes):
             next_node = (i+1)%g_v.Number_of_nodes
             prev_node = (i-1)%g_v.Number_of_nodes
