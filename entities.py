@@ -20,6 +20,6 @@ class Predator:
     def move(self):
         path = bfs(self.node)
         self.node.predator = False
-        self.node = path[0]
+        self.node = path[-2]
         self.node.predator = True
     
