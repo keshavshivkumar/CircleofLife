@@ -1,6 +1,8 @@
+from time import perf_counter
 from env import Graph
 from entities import Predator, Prey, Agent
 from Agent1 import Agent1
+from math import inf
 
 class Game:
     def __init__(self, agent: Agent, graph: Graph) -> None:
@@ -9,7 +11,7 @@ class Game:
         self.predator = Predator()
         self.graph = graph
         self.graph.spawn_entities(self.agent, self.prey, self.predator)
-        self.maxtimestep = 150
+        self.maxtimestep = 50
         self.timestep = 0
         self.victory = (False, False)
 
@@ -44,10 +46,23 @@ def run_game():
     agent = Agent1()
     graph = Graph()
     game = Game(agent, graph)
-    victory = game.run()
-    print(victory)
+    return game.run()
         
 if __name__ == "__main__":
-    run_game()
+    a = perf_counter()
+    win = 0
+    loss2 = 0
+    for _ in range(100):
+        victory = run_game()
+        if False not in victory:
+            win += 1
+        elif victory[1] == False:
+            loss2 +=1
+
+    print(f"win: {win}")
+    print(f"loss from timeout: {loss2}")
+    b = perf_counter()
+
+    print(f"time taken:{b-a}")
 
 
