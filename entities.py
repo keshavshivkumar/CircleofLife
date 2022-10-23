@@ -11,7 +11,7 @@ class Agent:
         pass
 
 class Prey:
-    def __init__(self, node) -> None:
+    def __init__(self, node = None) -> None:
         self.node = node
     
     def move(self):
@@ -23,7 +23,7 @@ class Prey:
         self.node = next_node
 
 class Predator:
-    def __init__(self, node) -> None:
+    def __init__(self, node = None) -> None:
         self.node = node
 
     def move(self):

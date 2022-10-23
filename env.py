@@ -82,25 +82,25 @@ class Graph:
 
         positions.remove(prey_pos)
         if pred_pos in positions:
-            pred_pos.remove(pred_pos)
+            positions.remove(pred_pos)
         
         agent_pos = random.choice(positions)
 
         return (prey_pos, pred_pos, agent_pos)
 
  
-    def spawn_entities(self, agent: Agent):
+    def spawn_entities(self, agent: Agent, prey: Prey, predator: Predator):
         prey_pos, pred_pos, agent_pos = self.get_random_positions()
 
         self.graph_nodes[prey_pos].prey = True
-        self.prey = Prey(self.graph_nodes[prey_pos])
+        prey.node = self.graph_nodes[prey_pos]
 
         self.graph_nodes[pred_pos].predator = True
-        self.prey = Predator(self.graph_nodes[pred_pos])
+        predator.node = self.graph_nodes[pred_pos]
 
         self.graph_nodes[agent_pos].agent = True
-        self.agent = agent
-        self.agent.node = self.graph_nodes[agent_pos]
+        agent.node = self.graph_nodes[agent_pos]
+
 
 
 
