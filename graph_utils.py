@@ -35,7 +35,7 @@ def agent_bfs(start_node):
 
     while not q.empty():
         current_node = q.get()
-
+        prey_node = pred_node = None
         if current_node.prey:
             prey_node=current_node
 
