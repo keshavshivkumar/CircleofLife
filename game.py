@@ -2,6 +2,7 @@ from time import perf_counter
 from env import Graph
 from entities import Predator, Prey, Agent
 from Agent1 import Agent1
+from Agent2 import Agent2
 from math import inf
 
 class Game:
@@ -52,7 +53,7 @@ if __name__ == "__main__":
     a = perf_counter()
     win = 0
     loss2 = 0
-    for _ in range(100):
+    for _ in range(1):
         victory = run_game()
         if False not in victory:
             win += 1
