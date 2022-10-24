@@ -33,20 +33,15 @@ def agent_bfs(start_node):
     q.put(start_node)
     came_from = dict()
     came_from[start_node] = None
-    prey_node = pred_node = None
-    prey_path=predator_path=[]
 
+    prey_node = pred_node = None
     while not q.empty():
         current_node = q.get()
         if current_node.prey:
             prey_node=current_node
-            if not prey_path:
-                prey_path=get_bfs_path(came_from, prey_node)
 
         if current_node.predator:
             pred_node=current_node
-            if not predator_path:
-                predator_path=get_bfs_path(came_from, pred_node)
 
         if prey_node!=None and pred_node !=None:
             break
@@ -56,7 +51,7 @@ def agent_bfs(start_node):
                 q.put(next)
                 came_from[next] = current_node
     
-    return prey_path, predator_path
+    return get_bfs_path(came_from, prey_node), get_bfs_path(came_from, pred_node)
 
 def predicted_prey_move(node):
     probable_moves=list(node.neighbors)

@@ -53,7 +53,7 @@ if __name__ == "__main__":
     a = perf_counter()
     win = 0
     loss2 = 0
-    for _ in range(1):
+    for _ in range(100):
         victory = run_game()
         if False not in victory:
             win += 1

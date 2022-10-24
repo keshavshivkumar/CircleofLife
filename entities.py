@@ -18,9 +18,9 @@ class Prey:
         moveset = list(self.node.neighbors)
         moveset.append(self.node)
         next_node = random.choice(moveset)
-        next_node.prey = True
         self.node.prey = False
         self.node = next_node
+        self.node.prey = True
 
 class Predator:
     def __init__(self, node = None) -> None:
@@ -29,6 +29,6 @@ class Predator:
     def move(self):
         path = pred_bfs(self.node)
         self.node.predator = False
-        self.node = path[-2]
+        self.node = path[-3]
         self.node.predator = True
     
