@@ -1,6 +1,7 @@
 from queue import Queue
 import random
 from math import inf
+from secrets import choice
 
 def get_bfs_path(came_from: dict, end_node):
     cur_node = end_node
@@ -63,23 +64,23 @@ def agent_bfs(start_node):
 def predicted_prey_move(agent, node):
     probable_moves=list(node.neighbors)
     probable_moves.append(node)
-    choices=dict()
+    choices=[]
     # get second largest distance from agent
     for neighbor_node in probable_moves:
         path=pred_bfs(agent, neighbor_node)
         print(f'Predicted prey path: {[x.pos for x in path]}')
+        choices.append(path)
         # print(agent.pos, neighbor_node.pos, len(path))
-        choices[len(path)] = path
-    max_dist=max(zip(choices.keys(), choices.values()))
-    min_dist=min(zip(choices.keys(), choices.values()))
-    for i, j in choices.items():
-        if i<max_dist[0]:
-            if i>min_dist[0]:
-                min_dist=(i,j)
-            elif i==min_dist[0]:
-                cointoss=random.choice([0,1])
-                if cointoss==0:
-                    min_dist=(i,j)
-    return min_dist[1]
+    choices.sort(key=lambda x:len(x))
+    return choices[-1] # returns largest
+    # returns second largest
+    '''
+    second=choices[-2]
+    for i in range(len(choices)):
+        if len(choices[i])==second:
+            break
+    choices=choices[i:-2]
+    return random.choice(choices)
+    '''
     # predicted_move=random.choice(probable_moves)
     # return predicted_move
