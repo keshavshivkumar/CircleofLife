@@ -12,7 +12,7 @@ class Game:
         self.predator = Predator()
         self.graph = graph
         self.graph.spawn_entities(self.agent, self.prey, self.predator)
-        self.maxtimestep = 50
+        self.maxtimestep = 200
         self.timestep = 0
         self.victory = (False, False)
 
@@ -44,7 +44,7 @@ class Game:
         return self.victory
 
 def run_game():
-    agent = Agent2()
+    agent = Agent1()
     graph = Graph()
     game = Game(agent, graph)
     return game.run()
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     a = perf_counter()
     win = 0
     loss2 = 0
-    for _ in range(1):
+    for _ in range(100):
         victory = run_game()
         if False not in victory:
             win += 1

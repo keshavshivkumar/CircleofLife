@@ -9,7 +9,7 @@ def get_bfs_path(came_from: dict, end_node):
     while cur_node != None:
         path.append(came_from[cur_node])
         cur_node = came_from[cur_node]
-    return path[:-1]
+    return path[:-2]
 
 def pred_bfs(start_node, end_node=None):
     q = Queue()
@@ -68,7 +68,7 @@ def predicted_prey_move(agent, node):
     # get second largest distance from agent
     for neighbor_node in probable_moves:
         path=pred_bfs(agent, neighbor_node)
-        print(f'Predicted prey path: {[x.pos for x in path]}')
+        # print(f'Predicted prey path: {[x.pos for x in path]}')
         choices.append(path)
         # print(agent.pos, neighbor_node.pos, len(path))
     choices.sort(key=lambda x:len(x))
