@@ -8,68 +8,65 @@ class Agent2(Agent):
     
     def move(self):
         curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node) # paths from current agent node to current prey & predator
-        # print(f'Prey Path: {[x.pos for x in curr_dist_from_prey]}')
-        if len(curr_dist_from_prey)>1:
-            prey=curr_dist_from_prey[0] # prey node
-            curr_dist_from_prey=predicted_prey_move(self.node, prey) # path of second farthest the prey can move from agent
+        prey = curr_dist_from_prey[0] # prey node
+        curr_dist_from_prey = predicted_prey_move(self.node, prey) # path of farthest the prey can move from agent
         chosen_neighbor=None
         priority=inf # variable to allow the better neighbor
         for neighbor in self.node.neighbors:
             if neighbor.prey and not neighbor.predator:
                 chosen_neighbor=neighbor
                 break
-            path_from_prey, path_from_pred = agent_bfs(neighbor)
-            if len(path_from_prey)>1:
-                path_from_prey=pred_bfs(neighbor, curr_dist_from_prey[-1])
-            # neighbor is closer to prey
-            if len(path_from_prey)<len(curr_dist_from_prey):
+            _ , path_from_pred = agent_bfs(neighbor)
+            path_from_prey = pred_bfs(neighbor, curr_dist_from_prey[0])
+            # neighbor is closer to predicted prey
+            if len(path_from_prey) < len(curr_dist_from_prey):
                 # neighbor is farther from predator
-                if len(path_from_pred)>len(curr_dist_from_pred):
+                if len(path_from_pred) > len(curr_dist_from_pred):
                     priority=1
                     chosen_neighbor=neighbor
                 # neighbor is not closer to predator
-                elif len(path_from_pred)==len(curr_dist_from_pred):
+                elif len(path_from_pred) == len(curr_dist_from_pred):
                     if priority>1:
                         priority=2
-                        chosen_neighbor=neighbor
+                        chosen_neighbor = neighbor
                 # neighbor is closer to predator, so sit still
                 else:
-                    if priority>6:
-                        priority=7
-                        chosen_neighbor=self.node
-            # neighbor is not farther from prey
-            elif len(path_from_prey)==len(curr_dist_from_prey):
+                    if priority > 6:
+                        priority = 7
+                        chosen_neighbor = self.node
+            # neighbor is not farther from predicted prey
+            elif len(path_from_prey) == len(curr_dist_from_prey):
                 # neighbor is farther from predator
-                if len(path_from_pred)>len(curr_dist_from_pred):
-                    if priority>2:
-                        priority=3
+                if len(path_from_pred) > len(curr_dist_from_pred):
+                    if priority > 2:
+                        priority = 3
                         chosen_neighbor=neighbor
                 # neighbor is not closer to predator
-                elif len(path_from_pred)==len(curr_dist_from_pred):
-                    if priority>3:
-                        priority=4
-                        chosen_neighbor=neighbor
+                elif len(path_from_pred) == len(curr_dist_from_pred):
+                    if priority > 3:
+                        priority = 4
+                        chosen_neighbor = neighbor
                 # neighbor is closer to predator, so sit still
                 else:
-                    if priority>7:
-                        priority=8
-                        chosen_neighbor=self.node
+                    if priority > 7:
+                        priority = 8
+                        chosen_neighbor = self.node
             else:
                 # neighbor is farther from predator
-                if len(path_from_pred)>len(curr_dist_from_pred):
-                    if priority>4:
-                        priority=5
-                        chosen_neighbor=neighbor
+                if len(path_from_pred) > len(curr_dist_from_pred):
+                    if priority > 4:
+                        priority = 5
+                        chosen_neighbor = neighbor
                 # neighbor is not closer to predator
-                elif len(path_from_pred)==len(curr_dist_from_pred):
-                    if priority>5:
-                        priority=6
-                        chosen_neighbor=neighbor
+                elif len(path_from_pred) == len(curr_dist_from_pred):
+                    if priority > 5:
+                        priority = 6
+                        chosen_neighbor = neighbor
                 # neighbor is closer to predator, so sit still
                 else:
-                    if priority>8:
-                        priority=9
-                        chosen_neighbor=self.node
-        self.node.agent=False
-        self.node=chosen_neighbor
-        self.node.agent=True
+                    if priority > 8:
+                        priority = 9 
+                        chosen_neighbor = self.node
+        self.node.agent = False
+        self.node = chosen_neighbor
+        self.node.agent = True

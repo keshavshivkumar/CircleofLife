@@ -65,22 +65,9 @@ def predicted_prey_move(agent, node):
     probable_moves=list(node.neighbors)
     probable_moves.append(node)
     choices=[]
-    # get second largest distance from agent
+    # sort according to distance from agent
     for neighbor_node in probable_moves:
         path=pred_bfs(agent, neighbor_node)
-        # print(f'Predicted prey path: {[x.pos for x in path]}')
         choices.append(path)
-        # print(agent.pos, neighbor_node.pos, len(path))
     choices.sort(key=lambda x:len(x))
     return choices[-1] # returns largest
-    # returns second largest
-    '''
-    second=choices[-2]
-    for i in range(len(choices)):
-        if len(choices[i])==second:
-            break
-    choices=choices[i:-2]
-    return random.choice(choices)
-    '''
-    # predicted_move=random.choice(probable_moves)
-    # return predicted_move
