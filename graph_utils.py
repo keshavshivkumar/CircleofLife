@@ -7,7 +7,7 @@ def get_bfs_path(came_from: dict, end_node):
     while cur_node != None:
         path.append(came_from[cur_node])
         cur_node = came_from[cur_node]
-    return path
+    return path[:-2]
 
 def pred_bfs(start_node):
     q = Queue()
