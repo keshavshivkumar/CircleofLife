@@ -44,7 +44,7 @@ class Game:
         return self.victory
 
 def run_game():
-    agent = Agent1()
+    agent = Agent2()
     graph = Graph()
     game = Game(agent, graph)
     return game.run()
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     a = perf_counter()
     win = 0
     loss2 = 0
-    for _ in range(100):
+    for _ in range(1):
         victory = run_game()
         if False not in victory:
             win += 1

@@ -29,6 +29,6 @@ class Predator:
     def move(self):
         path = pred_bfs(self.node)
         self.node.predator = False
-        self.node = path.pop()
+        self.node = path[-2]
         self.node.predator = True
     
