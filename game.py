@@ -13,7 +13,7 @@ class Game:
         self.predator = Predator()
         self.graph = graph
         self.graph.spawn_entities(self.agent, self.prey, self.predator)
-        self.maxtimestep = 100
+        self.maxtimestep = 50
         self.timestep = 0
         self.victory = (False, False)
 

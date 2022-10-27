@@ -9,15 +9,18 @@ class Agent2(Agent):
     def move(self):
         curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node) # paths from current agent node to current prey & predator
         prey = curr_dist_from_prey[0] # prey node
+        predator=curr_dist_from_pred[0]
         curr_dist_from_prey = predicted_prey_move(self.node, prey) # path of farthest the prey can move from agent
+        curr_dist_from_pred=pred_bfs(self.node, predator)
         chosen_neighbor=None
         priority=inf # variable to allow the better neighbor
         for neighbor in self.node.neighbors:
             if neighbor.prey and not neighbor.predator:
                 chosen_neighbor=neighbor
                 break
-            _ , path_from_pred = agent_bfs(neighbor)
+            # _ , path_from_pred = agent_bfs(neighbor)
             path_from_prey = pred_bfs(neighbor, curr_dist_from_prey[0])
+            path_from_pred = pred_bfs(neighbor, curr_dist_from_pred[0])
             # neighbor is closer to predicted prey
             if len(path_from_prey) < len(curr_dist_from_prey):
                 # neighbor is farther from predator
