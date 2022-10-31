@@ -2,10 +2,10 @@ from entities import Agent
 from env import Node
 import global_variables as g_v
 import numpy as np
-from graph_utils import agent_bfs
+from graph_utils import agent_bfs, bfs
 from math import inf
 
-class Agent3(Agent):
+class Agent5(Agent):
     def __init__(self, node=None) -> None:
         super().__init__(node)
         self.belief = None
@@ -18,14 +18,25 @@ class Agent3(Agent):
             if prob:
                 self.belief[i] = prob
 
-    def propagate_prey_belief(self):
+    def propagate_pred_belief(self):
         new_belief = np.zeros(g_v.Number_of_nodes)
         for node_pos in self.belief:
-            len_positions = self.graph_nodes[node_pos].degree() + 1
-            positions = [x.pos for x in self.graph_nodes[node_pos].neighbors]
-            positions.append(node_pos)
-            for pos in positions:
-                new_belief[pos] += self.belief[node_pos]/len_positions
+            curr_pred_node = self.graph_nodes[node_pos]
+
+            future_positions: list[Node] = []
+            min_length = inf
+            for neighbor in curr_pred_node.neighbors:
+                length = len(bfs(neighbor, self.node))
+                if length < min_length:
+                    future_positions = [neighbor]
+                    min_length = length
+                elif length == min_length:
+                    future_positions.append(neighbor)
+
+            len_positions = len(future_positions)
+            prob = self.belief[node_pos]
+            for node in future_positions:
+                new_belief[node.pos] += prob/len_positions
 
         self.belief = dict()
         for i,prob in enumerate(new_belief):
@@ -46,22 +57,22 @@ class Agent3(Agent):
         self.distribute_prob(self.node.pos)
 
         node_pos_with_highest_prob = max(self.belief, key=self.belief.get)
-        if self.graph_nodes[node_pos_with_highest_prob].prey == False:
+        if self.graph_nodes[node_pos_with_highest_prob].predator == False:
             self.distribute_prob(node_pos_with_highest_prob)
         else:
             self.belief = dict()
             self.belief[node_pos_with_highest_prob] = 1
 
-    def get_prey_location(self) -> Node:
+    def get_pred_location(self) -> Node:
         node_pos = max(self.belief, key=self.belief.get)
         return self.graph_nodes[node_pos]
 
-    def move_rulewise(self, prey_node):
-        curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node, prey = prey_node)
+    def move_rulewise(self, pred_node):
+        curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node, pred = pred_node)
         chosen_neighbor=None
         priority=inf # variable to allow the better neighbor
         for neighbor in self.node.neighbors:
-            path_from_prey, path_from_pred = agent_bfs(neighbor, prey = prey_node)
+            path_from_prey, path_from_pred = agent_bfs(neighbor, pred = pred_node)
             # neighbor is closer to prey
             if len(path_from_prey)<len(curr_dist_from_prey):
                 # neighbor is farther from predator
@@ -118,8 +129,8 @@ class Agent3(Agent):
     def move(self):
         if self.belief == None:
             self.initialize_belief()
-            
+        print(f'sum of belief {sum(self.belief.values())}')
         self.survey_node()
-        prey = self.get_prey_location()
-        self.move_rulewise(prey)
-        self.propagate_prey_belief()
+        pred = self.get_pred_location()
+        self.move_rulewise(pred)
+        self.propagate_pred_belief()

@@ -5,6 +5,7 @@ from entities import Predator, Prey, Agent
 from Agent1 import Agent1
 from Agent2 import Agent2
 from Agent3 import Agent3
+from Agent5 import Agent5
 import numpy as np
 
 class Game:
@@ -53,12 +54,12 @@ def run_game(agent, g):
         
 if __name__ == "__main__":
     a = perf_counter()
-    win = np.zeros(3)
-    loss2 = np.zeros(3)
-    for _ in range(1000):
+    win = np.zeros(4)
+    loss2 = np.zeros(4)
+    for _ in range(100):
         victories = []
         graph = Graph()
-        agents = [Agent1(), Agent2(), Agent3()]
+        agents = [Agent1(), Agent2(), Agent3(), Agent5()]
         for agent in agents:
             v = run_game(agent, graph)
             victories.append(v)
@@ -75,5 +76,3 @@ if __name__ == "__main__":
     b = perf_counter()
 
     print(f"time taken:{b-a}")
-
-

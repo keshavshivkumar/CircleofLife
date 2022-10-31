@@ -5,7 +5,7 @@ import global_variables as g_v
 
 class Node:
     def __init__(self, pos, agent = False, prey = False, predator = False) -> None:
-        self.pos=pos
+        self.pos: int = pos
         self.agent = agent
         self.prey = prey
         self.predator = predator
