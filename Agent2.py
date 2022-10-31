@@ -8,7 +8,7 @@ class Agent2(Agent):
     
     def move(self):
         curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node) # paths from current agent node to current prey & predator
-        #Current positions
+        # Current positions
         prey = curr_dist_from_prey[0] # prey node
         predator = curr_dist_from_pred[0] # pred node
 
