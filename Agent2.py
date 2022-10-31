@@ -1,4 +1,4 @@
-from graph_utils import agent_bfs, pred_bfs, predicted_prey_move
+from graph_utils import agent_bfs, bfs, predicted_prey_move
 from entities import Agent
 from math import inf
 
@@ -8,19 +8,30 @@ class Agent2(Agent):
     
     def move(self):
         curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node) # paths from current agent node to current prey & predator
+        #Current positions
         prey = curr_dist_from_prey[0] # prey node
-        predator=curr_dist_from_pred[0]
+        predator = curr_dist_from_pred[0] # pred node
+
+        # Predicted prey position
         curr_dist_from_prey = predicted_prey_move(self.node, prey) # path of farthest the prey can move from agent
-        curr_dist_from_pred=pred_bfs(self.node, predator)
+        future_prey = curr_dist_from_prey[0]
+
+        # Current distance from current predator
         chosen_neighbor=None
+
         priority=inf # variable to allow the better neighbor
         for neighbor in self.node.neighbors:
+            if neighbor.predator:
+                continue
             if neighbor.prey and not neighbor.predator:
                 chosen_neighbor=neighbor
                 break
-            # _ , path_from_pred = agent_bfs(neighbor)
-            path_from_prey = pred_bfs(neighbor, curr_dist_from_prey[0])
-            path_from_pred = pred_bfs(neighbor, curr_dist_from_pred[0])
+            
+            future_pred = bfs(neighbor, predator)[0]
+            curr_dist_from_pred = bfs(self.node, future_pred)
+
+            path_from_prey = bfs(neighbor, future_prey)
+            path_from_pred = bfs(neighbor, future_pred)
             # neighbor is closer to predicted prey
             if len(path_from_prey) < len(curr_dist_from_prey):
                 # neighbor is farther from predator

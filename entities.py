@@ -1,10 +1,12 @@
 from abc import abstractmethod
 import random
-from graph_utils import pred_bfs
+from graph_utils import bfs
+from env import Node, Graph
 
 class Agent:
     def __init__(self, node = None) -> None:
-        self.node = node
+        self.node: Node = node
+        self.graph_nodes: list[Node] = None
 
     @abstractmethod
     def move(self) -> None:
@@ -27,7 +29,7 @@ class Predator:
         self.node = node
 
     def move(self):
-        path = pred_bfs(self.node)
+        path = bfs(self.node)
         self.node.predator = False
         self.node = path.pop()
         self.node.predator = True

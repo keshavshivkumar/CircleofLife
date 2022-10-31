@@ -4,6 +4,7 @@ from env import Graph
 from entities import Predator, Prey, Agent
 from Agent1 import Agent1
 from Agent2 import Agent2
+from Agent3 import Agent3
 import numpy as np
 
 class Game:
@@ -13,7 +14,8 @@ class Game:
         self.predator = Predator()
         self.graph = graph
         self.graph.spawn_entities(self.agent, self.prey, self.predator)
-        self.maxtimestep = 50
+        self.agent.graph_nodes = graph.graph_nodes
+        self.maxtimestep = 100
         self.timestep = 0
         self.victory = (False, False)
 
@@ -51,12 +53,12 @@ def run_game(agent, g):
         
 if __name__ == "__main__":
     a = perf_counter()
-    win = np.zeros(2)
-    loss2 = np.zeros(2)
-    for _ in range(100):
+    win = np.zeros(3)
+    loss2 = np.zeros(3)
+    for _ in range(1000):
         victories = []
         graph = Graph()
-        agents = [Agent1(), Agent2()]
+        agents = [Agent1(), Agent2(), Agent3()]
         for agent in agents:
             v = run_game(agent, graph)
             victories.append(v)

@@ -2,7 +2,6 @@
 import random
 from typing import Tuple
 import global_variables as g_v
-from entities import Agent, Predator,Prey
 
 class Node:
     def __init__(self, pos, agent = False, prey = False, predator = False) -> None:
@@ -89,7 +88,7 @@ class Graph:
         return (prey_pos, pred_pos, agent_pos)
 
  
-    def spawn_entities(self, agent: Agent, prey: Prey, predator: Predator):
+    def spawn_entities(self, agent, prey, predator):
         prey_pos, pred_pos, agent_pos = self.get_random_positions()
 
         self.graph_nodes[prey_pos].prey = True
