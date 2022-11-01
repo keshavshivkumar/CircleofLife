@@ -46,12 +46,11 @@ class Agent5(Agent):
     def distribute_prob(self, node_pos):
         if node_pos not in self.belief:
             return
-
         prob = self.belief.pop(node_pos)
-        prob_distribute = prob / len(self.belief)
+        denominator = 1-prob
 
         for node_pos in self.belief:
-            self.belief[node_pos] += prob_distribute
+            self.belief[node_pos] /= denominator
         
     def survey_node(self):
         self.distribute_prob(self.node.pos)
@@ -129,7 +128,7 @@ class Agent5(Agent):
     def move(self):
         if self.belief == None:
             self.initialize_belief()
-        print(f'sum of belief {sum(self.belief.values())}')
+        
         self.survey_node()
         pred = self.get_pred_location()
         self.move_rulewise(pred)
