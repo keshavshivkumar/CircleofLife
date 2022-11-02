@@ -1,39 +1,40 @@
-from Agent3 import Agent3
+from Agent5 import Agent5
 from env import Node
 import global_variables as g_v
 import numpy as np
 from graph_utils import bfs, agent_bfs, predicted_prey_move
 from math import inf
 
-class Agent4(Agent3):
+class Agent6(Agent5):
     def __init__(self, node=None) -> None:
         super().__init__(node)
         self.belief = None
-    
-    def get_prey_location(self) -> Node:
-        node_pos = max(self.belief, key=self.belief.get)
-        farthest_prey_path = predicted_prey_move(self.node, self.graph_nodes[node_pos])
-        future_prey = farthest_prey_path[0]
-        return self.graph_nodes[future_prey.pos]
 
-    def move_rulewise(self, prey_node):
-        curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node, prey = prey_node)
+    def move_rulewise(self, pred_node):
+        curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node, pred = pred_node)
         # Current positions
-        future_prey = curr_dist_from_prey[0] # prey node
-        predator = curr_dist_from_pred[0] # pred node
+        prey = curr_dist_from_prey[0] # prey node
+        predator = pred_node # pred node
+
+        # Predicted prey position
+        curr_dist_from_prey = predicted_prey_move(self.node, prey) # path of farthest the prey can move from agent
+        future_prey = curr_dist_from_prey[0]
+
         chosen_neighbor=None
         priority=inf # variable to allow the better neighbor
         for neighbor in self.node.neighbors:
-            if neighbor.predator:
+            if neighbor==predator:
                 continue
             if neighbor.prey and not neighbor.predator:
                 chosen_neighbor=neighbor
                 break
-            future_pred = bfs(neighbor, predator)[0]
-            curr_dist_from_pred = bfs(self.node, future_pred)
+            future_pred = bfs(neighbor, predator)
+            # print(f'Predator path: {[x.pos for x in future_pred]}')
+            curr_dist_from_pred = bfs(self.node, future_pred[0])
 
             path_from_prey = bfs(neighbor, future_prey)
             path_from_pred = bfs(neighbor, future_pred)
+
             # neighbor is closer to prey
             if len(path_from_prey)<len(curr_dist_from_prey):
                 # neighbor is farther from predator
