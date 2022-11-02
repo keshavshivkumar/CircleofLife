@@ -23,11 +23,9 @@ class Agent6(Agent5):
         chosen_neighbor=None
         priority=inf # variable to allow the better neighbor
         for neighbor in self.node.neighbors:
-            if neighbor==predator:
+            if neighbor==predator: # if the neighbor is the predicted predator
                 continue
-            if neighbor.prey and not neighbor.predator:
-                chosen_neighbor=neighbor
-                break
+            
             future_pred = bfs(neighbor, predator)
             # print(f'Predator path: {[x.pos for x in future_pred]}')
             curr_dist_from_pred = bfs(self.node, future_pred[0])
