@@ -1,7 +1,9 @@
 from abc import abstractmethod
 import random
+from turtle import pos
 from graph_utils import bfs
 from env import Node, Graph
+from math import inf
 
 class Agent:
     def __init__(self, node = None) -> None:
@@ -29,8 +31,18 @@ class Predator:
         self.node = node
 
     def move(self):
-        path = bfs(self.node)
+        min_length = inf
+        positions = []
+        for neighbor in self.node.neighbors:
+            path = bfs(neighbor)
+            if len(path) < min_length:
+                positions = [neighbor]
+                min_length = len(path)
+            elif len(path) == min_length:
+                positions.append(neighbor)
+        
+        position = random.choice(positions)
         self.node.predator = False
-        self.node = path.pop()
+        self.node = position
         self.node.predator = True
     
