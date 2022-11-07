@@ -10,6 +10,7 @@ class Agent3(Agent):
         super().__init__(node)
         self.belief = None
 
+    # setting up the beliefs of each node to 1/49 (except the current agent)
     def initialize_belief(self):
         belief_list = np.zeros(g_v.Number_of_nodes) + 1/(g_v.Number_of_nodes - 1)
         belief_list[self.node.pos] = 0
@@ -18,6 +19,7 @@ class Agent3(Agent):
             if prob:
                 self.belief[i] = prob
 
+    # propogates the beliefs to non-zero beliefs after agent makes its move
     def propagate_prey_belief(self):
         new_belief = np.zeros(g_v.Number_of_nodes)
         for node_pos in self.belief:
@@ -31,7 +33,8 @@ class Agent3(Agent):
         for i,prob in enumerate(new_belief):
             if prob:
                 self.belief[i] = prob
-
+    
+    # adjusts the beliefs after picking a node to survey
     def distribute_prob(self, node_pos):
         if node_pos not in self.belief:
             return

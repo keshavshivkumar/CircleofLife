@@ -14,9 +14,8 @@ class Agent2(Agent):
 
         # Predicted prey position
         curr_dist_from_prey = predicted_prey_move(self.node, prey) # path of farthest the prey can move from agent
-        future_prey = curr_dist_from_prey[0]
+        future_prey = curr_dist_from_prey[0] # future (predicted) prey node
 
-        # Current distance from current predator
         chosen_neighbor=None
 
         priority=inf # variable to allow the better neighbor
@@ -27,11 +26,11 @@ class Agent2(Agent):
                 chosen_neighbor=neighbor
                 break
             
-            future_pred = bfs(neighbor, predator)[0]
+            future_pred = bfs(neighbor, predator)[0] # future predator node from agent neighbor 
             curr_dist_from_pred = bfs(self.node, future_pred)
 
-            path_from_prey = bfs(neighbor, future_prey)
-            path_from_pred = bfs(neighbor, future_pred)
+            path_from_prey = bfs(neighbor, future_prey) # path from agent neighbor to future prey
+            path_from_pred = bfs(neighbor, future_pred) # path from agent neighbor to future predator
             # neighbor is closer to predicted prey
             if len(path_from_prey) < len(curr_dist_from_prey):
                 # neighbor is farther from predator
