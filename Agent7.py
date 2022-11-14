@@ -83,8 +83,8 @@ class Agent7(Agent):
             prob = self.prey_belief.pop(node_pos)
             denominator = 1-prob
 
-            for node_pos in self.prey_belief:
-                self.prey_belief[node_pos] /= denominator
+            for pos in self.prey_belief:
+                self.prey_belief[pos] /= denominator
 
         if pred:
             if node_pos not in self.pred_belief:
@@ -92,8 +92,8 @@ class Agent7(Agent):
             prob = self.pred_belief.pop(node_pos)
             denominator = 1-prob
 
-            for node_pos in self.pred_belief:
-                self.pred_belief[node_pos] /= denominator
+            for pos in self.pred_belief:
+                self.pred_belief[pos] /= denominator
 
     def get_random_highest_prey_prob(self):
         max_prob = max(self.prey_belief.values())
