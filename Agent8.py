@@ -20,8 +20,6 @@ class Agent8(Agent7):
         return self.graph_nodes[future_prey.pos]
 
     def move_rulewise(self, prey_node, pred_node):
-        if prey_node.prey:
-            self.correct_prey_guess+=1
         curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node, prey = prey_node, pred = pred_node)
         # print(f'Pos: {[node.pos for node in curr_dist_from_pred]}, Predator: {pred_node.pos}, Agent: {self.node.pos}, {self.node.predator}')
         # Current positions
