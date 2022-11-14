@@ -14,9 +14,8 @@ class Agent2(Agent):
 
         # Predicted prey position
         curr_dist_from_prey = predicted_prey_move(self.node, prey) # path of farthest the prey can move from agent
-        future_prey = curr_dist_from_prey[0]
+        future_prey = curr_dist_from_prey[0] # future (predicted) prey node
 
-        # Current distance from current predator
         chosen_neighbor=None
 
         priority=inf # variable to allow the better neighbor

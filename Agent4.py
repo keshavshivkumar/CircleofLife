@@ -19,7 +19,7 @@ class Agent4(Agent3):
     def move_rulewise(self, prey_node):
         curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node, prey = prey_node)
         # Current positions
-        future_prey = curr_dist_from_prey[0] # prey node
+        future_prey = curr_dist_from_prey[0] # prey (where it is expected to move) node
         predator = curr_dist_from_pred[0] # pred node
         chosen_neighbor=None
         priority=inf # variable to allow the better neighbor

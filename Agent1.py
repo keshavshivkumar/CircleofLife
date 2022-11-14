@@ -7,11 +7,11 @@ class Agent1(Agent):
         super().__init__(node)
 
     def move(self):
-        curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node)
+        curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node) # paths of current agent node to prey and predator
         chosen_neighbor=None
         priority=inf # variable to allow the better neighbor
         for neighbor in self.node.neighbors:
-            path_from_prey, path_from_pred = agent_bfs(neighbor)
+            path_from_prey, path_from_pred = agent_bfs(neighbor) # paths of agent neighbor nodes to prey and predator
             # neighbor is closer to prey
             if len(path_from_prey)<len(curr_dist_from_prey):
                 # neighbor is farther from predator
