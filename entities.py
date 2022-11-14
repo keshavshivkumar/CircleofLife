@@ -1,9 +1,9 @@
 from abc import abstractmethod
 import random
-from turtle import pos
 from graph_utils import bfs
-from env import Node, Graph
+from env import Node
 from math import inf
+import numpy as np
 
 class Agent:
     def __init__(self, node = None) -> None:
@@ -45,4 +45,38 @@ class Predator:
         self.node.predator = False
         self.node = position
         self.node.predator = True
+
+class DistractedPredator:
+    def __init__(self, node: Node = None) -> None:
+        self.node = node
+
+    def move_closer(self):
+        min_length = inf
+        positions = []
+        for neighbor in self.node.neighbors:
+            path = bfs(neighbor)
+            if len(path) < min_length:
+                positions = [neighbor]
+                min_length = len(path)
+            elif len(path) == min_length:
+                positions.append(neighbor)
+        
+        position = random.choice(positions)
+        self.node.predator = False
+        self.node = position
+        self.node.predator = True
+
+    def move_random(self):
+        moveset = list(self.node.neighbors)
+        position = random.choice(moveset)
+        self.node.predator = False
+        self.node = position
+        self.node.predator = True
+
+    def move(self):
+        rng = np.random.uniform()
+        if rng <= 0.6:
+            self.move_closer()
+        else:
+            self.move_random()
     

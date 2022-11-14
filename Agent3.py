@@ -1,3 +1,4 @@
+import random
 from entities import Agent
 from env import Node
 import global_variables as g_v
@@ -40,11 +41,21 @@ class Agent3(Agent):
 
         for node_pos in self.belief:
             self.belief[node_pos] /= denominator
+
+
+    def get_random_highest_prob(self):
+        max_prob = max(self.belief.values())
+        max_belief = dict()
+        for node_pos in self.belief:
+            if self.belief[node_pos] == max_prob:
+                max_belief[node_pos] = max_prob
+
+        return random.choice(list(max_belief.keys()))
         
     def survey_node(self):
         self.distribute_prob(self.node.pos)
 
-        node_pos_with_highest_prob = max(self.belief, key=self.belief.get)
+        node_pos_with_highest_prob = self.get_random_highest_prob()
         if self.graph_nodes[node_pos_with_highest_prob].prey == False:
             self.distribute_prob(node_pos_with_highest_prob)
         else:
@@ -52,7 +63,7 @@ class Agent3(Agent):
             self.belief[node_pos_with_highest_prob] = 1
 
     def get_prey_location(self) -> Node:
-        node_pos = max(self.belief, key=self.belief.get)
+        node_pos = self.get_random_highest_prob()
         return self.graph_nodes[node_pos]
 
     def move_rulewise(self, prey_node):

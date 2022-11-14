@@ -1,13 +1,14 @@
 import copy
 from time import perf_counter
 from env import Graph
-from entities import Predator, Prey, Agent
+from entities import Predator, Prey, Agent, DistractedPredator
 from Agent1 import Agent1
 from Agent2 import Agent2
 from Agent3 import Agent3
 from Agent4 import Agent4
 from Agent5 import Agent5
 from Agent6 import Agent6
+from Agent7 import Agent7
 import numpy as np
 
 class Game:
@@ -15,6 +16,8 @@ class Game:
         self.agent = agent
         self.prey = Prey()
         self.predator = Predator()
+        if agent.__str__() in '5678':
+            self.predator = DistractedPredator()
         self.graph = graph
         self.graph.spawn_entities(self.agent, self.prey, self.predator)
         self.agent.graph_nodes = graph.graph_nodes
@@ -49,21 +52,22 @@ class Game:
 
         return self.victory
 
-def run_game(agent, g):
-    graph = copy.deepcopy(g)
+def run_game(agent):
+    graph = Graph()
     game = Game(agent, graph)
     return game.run()
-        
+
 if __name__ == "__main__":
     a = perf_counter()
-    win = np.zeros(6)
-    loss2 = np.zeros(6)
+    num_agents = 7
+    win = np.zeros(num_agents)
+    loss2 = np.zeros(num_agents)
     for _ in range(100):
         victories = []
-        graph = Graph()
-        agents = [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6()]
+        # [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7()]
+        agents = [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7()]
         for agent in agents:
-            v = run_game(agent, graph)
+            v = run_game(agent)
             victories.append(v)
         for i,victory in enumerate(victories):
             if False not in victory:

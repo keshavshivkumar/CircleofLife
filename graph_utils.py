@@ -67,13 +67,13 @@ def agent_bfs(start_node, prey = None, pred = None):
     
     return get_bfs_path(came_from, prey_node), get_bfs_path(came_from, pred_node)
 
-def predicted_prey_move(agent, node):
-    probable_moves=list(node.neighbors)
-    probable_moves.append(node)
+def predicted_prey_move(agent, prey):
+    probable_moves=list(prey.neighbors)
+    probable_moves.append(prey)
     choices=[]
     # sort according to distance from agent
-    for neighbor_node in probable_moves:
-        path = bfs(agent, neighbor_node)
+    for neighbor_prey in probable_moves:
+        path = bfs(agent, neighbor_prey)
         choices.append(path)
     choices.sort(key=lambda x:len(x))
     return choices[-1] # returns largest

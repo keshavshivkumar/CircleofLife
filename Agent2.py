@@ -27,14 +27,13 @@ class Agent2(Agent):
                 chosen_neighbor=neighbor
                 break
             
-            future_pred = bfs(neighbor, predator)[0]
-            curr_dist_from_pred = bfs(self.node, future_pred)
-
+            future_pred = bfs(predator, neighbor)[-1]
+            
             path_from_prey = bfs(neighbor, future_prey)
             path_from_pred = bfs(neighbor, future_pred)
-            # neighbor is closer to predicted prey
+            # neighbor is closer to future prey
             if len(path_from_prey) < len(curr_dist_from_prey):
-                # neighbor is farther from predator
+                # neighbor is farther from future predator
                 if len(path_from_pred) > len(curr_dist_from_pred):
                     priority=1
                     chosen_neighbor=neighbor

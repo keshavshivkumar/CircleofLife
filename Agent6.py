@@ -9,6 +9,9 @@ class Agent6(Agent5):
     def __init__(self, node=None) -> None:
         super().__init__(node)
         self.belief = None
+    
+    def __str__(self) -> str:
+        return '6'
 
     def move_rulewise(self, pred_node):
         curr_dist_from_prey, curr_dist_from_pred = agent_bfs(self.node, pred = pred_node)
@@ -26,9 +29,9 @@ class Agent6(Agent5):
             if neighbor==predator: # if the neighbor is the predicted predator
                 continue
             
-            future_pred = bfs(neighbor, predator)
+            future_pred = bfs(predator, neighbor)[-1]
             # print(f'Predator path: {[x.pos for x in future_pred]}')
-            curr_dist_from_pred = bfs(self.node, future_pred[0])
+            # curr_dist_from_pred = bfs(self.node, future_pred)
 
             path_from_prey = bfs(neighbor, future_prey)
             path_from_pred = bfs(neighbor, future_pred)

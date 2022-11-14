@@ -11,7 +11,7 @@ class Agent4(Agent3):
         self.belief = None
     
     def get_prey_location(self) -> Node:
-        node_pos = max(self.belief, key=self.belief.get)
+        node_pos = self.get_random_highest_prob()
         farthest_prey_path = predicted_prey_move(self.node, self.graph_nodes[node_pos])
         future_prey = farthest_prey_path[0]
         return self.graph_nodes[future_prey.pos]
@@ -26,11 +26,7 @@ class Agent4(Agent3):
         for neighbor in self.node.neighbors:
             if neighbor.predator:
                 continue
-            if neighbor.prey and not neighbor.predator:
-                chosen_neighbor=neighbor
-                break
-            future_pred = bfs(neighbor, predator)[0]
-            curr_dist_from_pred = bfs(self.node, future_pred)
+            future_pred = bfs(predator, neighbor)[-1]
 
             path_from_prey = bfs(neighbor, future_prey)
             path_from_pred = bfs(neighbor, future_pred)
