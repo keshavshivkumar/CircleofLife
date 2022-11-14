@@ -106,6 +106,7 @@ class Agent5(Agent):
         else:
             self.belief = dict()
             self.belief[node_pos_with_highest_prob] = 1
+            self.correct_predator_guess+=1
 
     def get_pred_location(self) -> Node:
         node_pos_with_highest_prob = self.get_closest_random_node()

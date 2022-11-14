@@ -111,6 +111,7 @@ class Agent7(Agent):
         else:
             self.prey_belief = dict()
             self.prey_belief[node_pos_with_highest_prob] = 1
+            self.correct_prey_guess+=1
 
     def get_close_predators_belief(self, max_prob_belief: dict) -> dict:
         closest_predators = dict()
@@ -146,6 +147,7 @@ class Agent7(Agent):
         else:
             self.pred_belief = dict()
             self.pred_belief[node_pos_with_highest_prob] = 1
+            self.correct_predator_guess+=1
 
     def survey_node(self):
         self.distribute_prob(self.node.pos, True, True)

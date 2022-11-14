@@ -64,6 +64,7 @@ class Agent3(Agent):
         else:
             self.belief = dict()
             self.belief[node_pos_with_highest_prob] = 1
+            self.correct_prey_guess+=1
 
     def get_prey_location(self) -> Node:
         node_pos = self.get_random_highest_prob()

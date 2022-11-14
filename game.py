@@ -49,9 +49,10 @@ class Game:
             if not self.running():
                 break
             self.prey.move()
+            if not self.running(): # in case the prey moves into the agent's node
+                break
             self.predator.move()
-
-        return self.victory
+        return self.victory, self.timestep
 
 def run_game(agent):
     graph = Graph()
@@ -60,26 +61,43 @@ def run_game(agent):
 
 if __name__ == "__main__":
     a = perf_counter()
-    num_agents = 2
+    num_agents = 8
+    iterations=100
     win = np.zeros(num_agents)
     loss2 = np.zeros(num_agents)
-    for _ in range(100):
+    agent_caught = np.zeros(num_agents)
+    # partial_prey_agents=[Agent3(), Agent4(), Agent7(), Agent8()]
+    # partial_predator_agents=[Agent5(), Agent6(), Agent7(), Agent8()]
+    for _ in range(iterations):
         victories = []
         # [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent8()]
-        agents = [Agent7(), Agent8()]
+        agents = [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent8()]
+        correct_prey_guess={agent:0 for agent in agents}
+        correct_predator_guess={agent:0 for agent in agents}
         for agent in agents:
-            v = run_game(agent)
+            v, timesteps = run_game(agent)
             victories.append(v)
+            prey_guess_rate=agent.correct_prey_guess/timesteps
+            predator_guess_rate=agent.correct_predator_guess/timesteps
+            correct_prey_guess[agent]+=prey_guess_rate
+            correct_predator_guess[agent]+=predator_guess_rate
+
         for i,victory in enumerate(victories):
             if False not in victory:
-                win[i] +=1
+                win[i] += 1
             elif victory[1] == False:
-                loss2[i] +=1
+                loss2[i] += 1
+            elif victory[0] == False:
+                agent_caught[i] += 1
 
-    for w,l2 in zip(win,loss2):
-        print(f"win: {w}")
-        print(f"loss from timeout: {l2}")
+    for w,l2,death, agent in zip(win,loss2,agent_caught, agents):
         print()
+        print(f"win percentage: {(w/iterations)*100}")
+        print(f"loss from timeout: {(l2/iterations)*100}")
+        print(f"agent caught by predator: {(death/iterations)*100}")
+        print(f"Accuracy of prey guess over timesteps: {correct_prey_guess[agent]}")
+        print(f"Accuracy of predator guess over timesteps: {correct_predator_guess[agent]}")
+    print()
     b = perf_counter()
 
     print(f"time taken:{b-a}")

@@ -9,6 +9,8 @@ class Agent:
     def __init__(self, node = None) -> None:
         self.node: Node = node
         self.graph_nodes: list[Node] = None
+        self.correct_prey_guess=0
+        self.correct_predator_guess=0
 
     @abstractmethod
     def move(self) -> None:
