@@ -9,6 +9,7 @@ from Agent4 import Agent4
 from Agent5 import Agent5
 from Agent6 import Agent6
 from Agent7 import Agent7
+from Agent8 import Agent8
 import numpy as np
 
 class Game:
@@ -59,13 +60,13 @@ def run_game(agent):
 
 if __name__ == "__main__":
     a = perf_counter()
-    num_agents = 7
+    num_agents = 2
     win = np.zeros(num_agents)
     loss2 = np.zeros(num_agents)
     for _ in range(100):
         victories = []
-        # [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7()]
-        agents = [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7()]
+        # [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent8()]
+        agents = [Agent7(), Agent8()]
         for agent in agents:
             v = run_game(agent)
             victories.append(v)
