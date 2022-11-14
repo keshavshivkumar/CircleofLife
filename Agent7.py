@@ -119,6 +119,7 @@ class Agent7(Agent):
             curr_pred = self.graph_nodes[node_pos]
             length = len(bfs(curr_pred, self.node))
             if length < min_length:
+                min_length = length
                 closest_predators = dict()
                 closest_predators[node_pos] = max_prob_belief[node_pos]
             elif length == min_length:
