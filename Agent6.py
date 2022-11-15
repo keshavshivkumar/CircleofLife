@@ -4,6 +4,7 @@ import global_variables as g_v
 import numpy as np
 from graph_utils import bfs, agent_bfs, predicted_prey_move
 from math import inf
+import random
 
 class Agent6(Agent5):
     def __init__(self, node=None) -> None:
@@ -40,51 +41,78 @@ class Agent6(Agent5):
             if len(path_from_prey)<len(curr_dist_from_prey):
                 # neighbor is farther from predator
                 if len(path_from_pred)>len(curr_dist_from_pred):
-                    priority=1
-                    chosen_neighbor=neighbor
+                    if priority == 1:
+                        chosen_neighbor = random.choice([neighbor, chosen_neighbor])
+                    else:
+                        priority=1
+                        chosen_neighbor=neighbor
                 # neighbor is not closer to predator
                 elif len(path_from_pred)==len(curr_dist_from_pred):
                     if priority>1:
-                        priority=2
-                        chosen_neighbor=neighbor
+                        if priority == 2: # breaking ties at random
+                            chosen_neighbor = random.choice([neighbor, chosen_neighbor])
+                        else:
+                            priority=2
+                            chosen_neighbor=neighbor
                 # neighbor is closer to predator, so sit still
                 else:
                     if priority>6:
-                        priority=7
-                        chosen_neighbor=self.node
+                        if priority == 7:
+                            chosen_neighbor = random.choice([neighbor, chosen_neighbor])
+                        else:
+                            priority=7
+                            chosen_neighbor=self.node
             # neighbor is not farther from prey
             elif len(path_from_prey)==len(curr_dist_from_prey):
                 # neighbor is farther from predator
                 if len(path_from_pred)>len(curr_dist_from_pred):
                     if priority>2:
-                        priority=3
-                        chosen_neighbor=neighbor
+                        if priority == 3:
+                            chosen_neighbor = random.choice([neighbor, chosen_neighbor])
+                        else:
+                            priority=3
+                            chosen_neighbor=neighbor
                 # neighbor is not closer to predator
                 elif len(path_from_pred)==len(curr_dist_from_pred):
                     if priority>3:
-                        priority=4
-                        chosen_neighbor=neighbor
+                        if priority == 4:
+                            chosen_neighbor = random.choice([neighbor, chosen_neighbor])
+                        else:
+                            priority=4
+                            chosen_neighbor=neighbor
                 # neighbor is closer to predator, so sit still
                 else:
                     if priority>7:
-                        priority=8
-                        chosen_neighbor=self.node
+                        if priority == 8:
+                            chosen_neighbor = random.choice([neighbor, chosen_neighbor])
+                        else:
+                            priority=8
+                            chosen_neighbor=self.node
             else:
                 # neighbor is farther from predator
                 if len(path_from_pred)>len(curr_dist_from_pred):
                     if priority>4:
-                        priority=5
-                        chosen_neighbor=neighbor
+                        if priority == 5:
+                            chosen_neighbor = random.choice([neighbor, chosen_neighbor])
+                        else:
+                            priority=5
+                            chosen_neighbor=neighbor
                 # neighbor is not closer to predator
                 elif len(path_from_pred)==len(curr_dist_from_pred):
                     if priority>5:
-                        priority=6
-                        chosen_neighbor=neighbor
+                        if priority == 6:
+                            chosen_neighbor = random.choice([neighbor, chosen_neighbor])
+                        else:
+                            priority=6
+                            chosen_neighbor=neighbor
                 # neighbor is closer to predator, so sit still
                 else:
                     if priority>8:
-                        priority=9
-                        chosen_neighbor=self.node
+                        if priority == 9:
+                            chosen_neighbor = random.choice([neighbor, chosen_neighbor])
+                        else:
+                            priority=9
+                            chosen_neighbor=self.node
         self.node.agent=False
         self.node=chosen_neighbor
         self.node.agent=True
