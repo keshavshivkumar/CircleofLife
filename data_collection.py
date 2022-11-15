@@ -5,7 +5,11 @@ from Agent4 import Agent4
 from Agent5 import Agent5
 from Agent6 import Agent6
 from Agent7 import Agent7
+from Agent7faulty import Agent7Faulty
+from Agent7faultyfix import Agent7FaultyFix
 from Agent8 import Agent8
+from Agent8faulty import Agent8Faulty
+from Agent8faultyfix import Agent8FaultyFix
 from game import run_game
 import os
 import logging
@@ -20,19 +24,19 @@ class DataCollection():
             os.mkdir(self.dir)
 
     def run_all(self):
-        num_agents = 8
+        num_agents = 12
         iterations=100
         win = np.zeros(num_agents)
         loss2 = np.zeros(num_agents)
         agent_caught = np.zeros(num_agents)
         for x in range(iterations):
-            agents = [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent8()]
+            agents = [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent7Faulty(), Agent7FaultyFix(), Agent8(), Agent8Faulty(), Agent8FaultyFix()]
             victories=[]
             correct_prey_guess={agent:0 for agent in agents}
             correct_predator_guess={agent:0 for agent in agents}
+            print(f'iteration {x+1}')
             for agent in agents:
                 v, timesteps = run_game(agent)
-                print(f'iteration {x+1}')
                 victories.append(v)
                 prey_guess_rate=agent.correct_prey_guess/timesteps
                 predator_guess_rate=agent.correct_predator_guess/timesteps
@@ -61,7 +65,7 @@ class DataCollection():
         self.logger.info(log_string)
 
     def init_logger(self):
-        log_path = self.dir + 'collecteddata.csv'
+        log_path = self.dir + 'collecteddata50.csv'
         ch = logging.FileHandler(log_path)
         ch.setFormatter(logging.Formatter('%(message)s'))
         self.logger.addHandler(ch)
