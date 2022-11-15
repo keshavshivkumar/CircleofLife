@@ -66,8 +66,6 @@ if __name__ == "__main__":
     win = np.zeros(num_agents)
     loss2 = np.zeros(num_agents)
     agent_caught = np.zeros(num_agents)
-    # partial_prey_agents=[Agent3(), Agent4(), Agent7(), Agent8()]
-    # partial_predator_agents=[Agent5(), Agent6(), Agent7(), Agent8()]
     for _ in range(iterations):
         victories = []
         # [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent8()]
@@ -90,7 +88,7 @@ if __name__ == "__main__":
             elif victory[0] == False:
                 agent_caught[i] += 1
 
-    for w,l2,death, agent in zip(win,loss2,agent_caught, agents):
+    for w, l2, death, agent in zip(win, loss2, agent_caught, agents):
         print()
         print(f"win percentage: {(w/iterations)*100}")
         print(f"loss from timeout: {(l2/iterations)*100}")
