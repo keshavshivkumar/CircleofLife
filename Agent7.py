@@ -77,18 +77,14 @@ class Agent7(Agent):
                 self.prey_belief[i] = prob
 
     def distribute_prob(self, node_pos, prey = False, pred = False):
-        if prey:
-            if node_pos not in self.prey_belief:
-                return
+        if prey and node_pos in self.prey_belief:
             prob = self.prey_belief.pop(node_pos)
             denominator = 1-prob
 
             for pos in self.prey_belief:
                 self.prey_belief[pos] /= denominator
 
-        if pred:
-            if node_pos not in self.pred_belief:
-                return
+        if pred and node_pos in self.pred_belief:
             prob = self.pred_belief.pop(node_pos)
             denominator = 1-prob
 
@@ -103,15 +99,6 @@ class Agent7(Agent):
                 max_belief[node_pos] = max_prob
 
         return random.choice(list(max_belief.keys()))
-
-    def survey_prey(self):
-        node_pos_with_highest_prob = self.get_random_highest_prey_prob()
-        if self.graph_nodes[node_pos_with_highest_prob].prey == False:
-            self.distribute_prob(node_pos_with_highest_prob, prey=True)
-        else:
-            self.prey_belief = dict()
-            self.prey_belief[node_pos_with_highest_prob] = 1
-            self.correct_prey_guess+=1
 
     def get_close_predators_belief(self, max_prob_belief: dict) -> dict:
         closest_predators = dict()
@@ -140,14 +127,28 @@ class Agent7(Agent):
 
         return random.choice(list(closest_predators.keys()))
 
-    def survey_pred(self):
-        node_pos_with_highest_prob = self.get_closest_random_pred_node()
+    def survey(self, node_pos_with_highest_prob):
+        if self.graph_nodes[node_pos_with_highest_prob].prey == False:
+            self.distribute_prob(node_pos_with_highest_prob, prey=True)
+        else:
+            self.prey_belief = dict()
+            self.prey_belief[node_pos_with_highest_prob] = 1
+            self.correct_prey_guess+=1
+
         if self.graph_nodes[node_pos_with_highest_prob].predator == False:
             self.distribute_prob(node_pos_with_highest_prob, pred=True)
         else:
             self.pred_belief = dict()
             self.pred_belief[node_pos_with_highest_prob] = 1
             self.correct_predator_guess+=1
+
+    def survey_prey(self):
+        node_pos_with_highest_prob = self.get_random_highest_prey_prob()
+        self.survey(node_pos_with_highest_prob)
+
+    def survey_pred(self):
+        node_pos_with_highest_prob = self.get_closest_random_pred_node()
+        self.survey(node_pos_with_highest_prob)
 
     def survey_node(self):
         self.distribute_prob(self.node.pos, True, True)
