@@ -10,6 +10,10 @@ from Agent5 import Agent5
 from Agent6 import Agent6
 from Agent7 import Agent7
 from Agent8 import Agent8
+from Agent7faulty import Agent7Faulty
+from Agent8faulty import Agent8Faulty
+from Agent7faultyfix import Agent7FaultyFix
+from Agent8faultyfix import Agent8FaultyFix
 import numpy as np
 
 class Game:
@@ -61,15 +65,15 @@ def run_game(agent):
 
 if __name__ == "__main__":
     a = perf_counter()
-    num_agents = 8
+    num_agents = 12
     iterations=100
     win = np.zeros(num_agents)
     loss2 = np.zeros(num_agents)
     agent_caught = np.zeros(num_agents)
     for _ in range(iterations):
         victories = []
-        # [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent8()]
-        agents = [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent8()]
+        # [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent8(), Agent7Faulty(), Agent8Faulty(), Agent7FaultyFix(), Agent8FaultyFix()]
+        agents = [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent8(), Agent7Faulty(), Agent8Faulty(), Agent7FaultyFix(), Agent8FaultyFix()]
         correct_prey_guess={agent:0 for agent in agents}
         correct_predator_guess={agent:0 for agent in agents}
         for agent in agents:
