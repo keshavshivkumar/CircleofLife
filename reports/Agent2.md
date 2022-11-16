@@ -14,6 +14,7 @@
 ## Observations
 
 - Agent 2 catches the prey more frequently than Agent 1.
+- The win rate is on average _.
 
 ## Inference
 
