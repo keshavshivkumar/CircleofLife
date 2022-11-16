@@ -15,4 +15,15 @@
 ## Implementation
 
 - A priority variable is set to infinity. This priority variable chooses the best agent neighbor based on how low it becomes.
-- 
+- The priority value is set based on the above conditions, implying the lower the priority, the better the choice of neighbor is (lowest priority is 1).
+- If there is a tie of priority, the ties are broken at random.
+
+## Observations
+
+- The conditions enable the agent to frequently catch the prey and not die.
+- The win rate is on average _.
+
+## Inference
+
+- In an ideal environment, where the agent has knowledge of where the prey and predator are, it is easy for it to target the prey while also avoiding the predator.
+- Another condition could be added to run away from the predator, and the agent will eventually catch the prey. But this will be costly in terms of timesteps.
