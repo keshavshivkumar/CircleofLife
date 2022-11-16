@@ -10,3 +10,15 @@
 - The agent is provided different levels of information of the prey and predator, and must use the information to make decisions.
 
 ## Analysis
+
+
+## Workload Split-up
+
+> Design and Implementing:
+> > Shashwath, Keshav
+
+> Debugging and code correctness:
+> > Shashwath
+
+> Data Collection:
+> > Keshav

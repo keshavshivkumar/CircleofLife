@@ -30,7 +30,7 @@ class DataCollection():
         loss2 = np.zeros(num_agents)
         agent_caught = np.zeros(num_agents)
         for x in range(iterations):
-            agents = [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent7Faulty(), Agent7FaultyFix(), Agent8(), Agent8Faulty(), Agent8FaultyFix()]
+            agents = [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent7FaultyFix(), Agent8(),  Agent8FaultyFix()]
             victories=[]
             correct_prey_guess={agent:0 for agent in agents}
             correct_predator_guess={agent:0 for agent in agents}
@@ -65,7 +65,7 @@ class DataCollection():
         self.logger.info(log_string)
 
     def init_logger(self):
-        log_path = self.dir + 'collecteddata50.csv'
+        log_path = self.dir + 'collecteddata200.csv'
         ch = logging.FileHandler(log_path)
         ch.setFormatter(logging.Formatter('%(message)s'))
         self.logger.addHandler(ch)
@@ -79,6 +79,7 @@ class DataCollection():
             handler = self.init_logger()
             self.run_all()
             self.logger.removeHandler(handler)
+        print("-------------------- DONE --------------------")
     
 if __name__ == '__main__':
     data_collect = DataCollection()

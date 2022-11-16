@@ -26,7 +26,7 @@ class Game:
         self.graph = graph
         self.graph.spawn_entities(self.agent, self.prey, self.predator)
         self.agent.graph_nodes = graph.graph_nodes
-        self.maxtimestep = 50
+        self.maxtimestep = 200
         self.timestep = 0
         self.victory = (False, False)
 
