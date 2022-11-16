@@ -9,6 +9,9 @@
     - If the prey is found, the belief of that node becomes 1 and the rest of the beliefs become 0.
 - The surveyed nodes is assumed to be the prey, and the agent moves accordingly.
 - After the agent makes its move, the beliefs are propogated to the non-zero beliefs in the dictionary.
+- To generalize, if a node x is picked and surveyed:
+    - if the prey is in x, then P(x|prey is in x) = 1 and P(y<sub>i</sub>|prey is in x) = 0
+    - if the prey is not in x, then P(x|prey is not in x) = 0, and P(y<sub>i</sub>|prey is not in x) = P(prey is in y<sub>i</sub>, prey is not in x) / P(failed to find prey in x) = P(prey is in y<sub>i</sub>) * P(failed to find prey in prey in x|prey is in y<sub>i</sub>) / P(failed to find prey in x), where y<sub>i</sub> is a neighbor of x.
 
 ## Implementation
 
