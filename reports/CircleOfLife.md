@@ -469,7 +469,10 @@ $$P(prey_i| \neg{survey_j}) = { P(prey_i) \times 0.1 \over 1 - 0.9 \times P(surv
 
 ![faulty](faulty_winrate.png)
 `Agent 7` performs much better than `Agent 8` with faulty survey, 
+
+### More numbers
 Average Win-rate in each run:
+
 | Timesteps 	|  Agent 1 	|  Agent 2 	|  Agent 3 	|  Agent 4 	|  Agent 5 	|  Agent 6 	|  Agent 7 	| Agent 7 Faulty 	| Agent 7 Faulty Fix 	|  Agent 8 	| Agent 8 Faulty 	| Agent 8 Faulty Fix 	|
 |:---------:	|:--------:	|:--------:	|:--------:	|:--------:	|:--------:	|:--------:	|:--------:	|----------------	|:------------------:	|:--------:	|----------------	|:------------------:	|
 |     50    	| 87.63333 	|   95.4   	| 77.43333 	| 83.63333 	| 79.53333 	|   78.7   	| 66.33333 	| 55.2           	|        61.3        	| 63.63333 	| 47             	|      55.66667      	|
@@ -480,6 +483,7 @@ Average Win-rate in each run:
 
 
 Average number of times Agent dies to Predator:
+
 | Timesteps 	|  Agent 1 	|  Agent 2 	|  Agent 3 	|  Agent 4 	|  Agent 5 	|  Agent 6 	|  Agent 7 	| Agent 7 Faulty Fix 	|  Agent 8 	| Agent 8 Faulty Fix 	| Agent 7 Faulty 	| Agent 8 Faulty 	|
 |:---------:	|:--------:	|:--------:	|:--------:	|:--------:	|:--------:	|:--------:	|:--------:	|:------------------:	|:--------:	|:------------------:	|----------------	|----------------	|
 |     50    	| 12.23333 	| 3.666667 	| 16.23333 	| 4.466667 	| 18.4     	| 11.5     	| 17.23333 	| 27.9               	| 14.86667 	| 29.46667           	| 37.13333       	| 42.5           	|
@@ -488,6 +492,7 @@ Average number of times Agent dies to Predator:
 |    200    	| 12.06667 	| 2.8      	| 15.93333 	| 4.1      	| 18.1     	| 13.73333 	| 21.96667 	| 31.7               	| 20.1     	| 33.06667           	| 41.3           	| 47.9           	|
 
 Average number of Timeouts in each run:
+
 | Timesteps 	|  Agent 1 	|  Agent 2 	|  Agent 3 	|  Agent 4 	|  Agent 5 	|  Agent 6 	|  Agent 7 	| Agent 7 Faulty 	| Agent 7 Faulty Fix 	|  Agent 8 	| Agent 8 Faulty 	| Agent 8 Faulty Fix 	|
 |:---------:	|:--------:	|:--------:	|:--------:	|:--------:	|:--------:	|:--------:	|:--------:	|----------------	|:------------------:	|:--------:	|----------------	|:------------------:	|
 |     50    	| 0.133333 	| 0.933333 	| 6.333333 	| 11.9     	| 2.066667 	| 9.8      	| 16.43333 	| 7.933333       	| 10.8               	| 21.5     	| 10.5           	| 14.86667           	|
