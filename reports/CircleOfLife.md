@@ -466,9 +466,11 @@ $$P(prey_i| \neg{survey_j}) = { P(prey_i) \times 0.1 \over 1 - 0.9 \times P(surv
 - Comparison of Win-rates/Success between all agents:
 
 ![winrate](All_agents.png)
+
 - we can see that with the strategy of even agents, they consistently outperform odd agents.
 
 ![faulty](faulty_winrate.png)
+
 `Agent 7` performs much better than `Agent 8` with faulty survey, 
 
 ### More numbers
