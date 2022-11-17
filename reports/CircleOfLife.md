@@ -85,10 +85,10 @@
 ## Observations
 
 - The conditions enable the agent to frequently catch the prey and not die.
-- The win rate for 150 timesteps is on average 87.03333333%.
+- The win rate for 150 timesteps is on average 87.03333333%, with a standard deviation of 3.418845675.
 - The loss rates are:
-    - 0% due to timeout.
-    - 12.96666667% due to death from predator.
+    - 0% due to timeout, with a standard deviation of 0.
+    - 12.96666667% due to death from predator, with a standard deviation of 3.418845675.
 
 ## Inference
 
@@ -111,10 +111,10 @@
 ## Observations
 
 - Agent 2 catches the prey more frequently than Agent 1.
-- The win rate for 150 timesteps is on average 96.36666667%.
+- The win rate for 150 timesteps is on average 96.36666667%, with a standard deviation of 1.920548293.
 - The loss rates are:
-    - 0.1% due to timeout.
-    - 3.533333333% due to death from predator.
+    - 0.1% due to timeout, with a standard deviation of 0.305128577.
+    - 3.533333333% due to death from predator, with a standard deviation of 1.925031721.
 
 ## Inference
 
@@ -170,10 +170,10 @@ where $P(prey_i|prey_k) =$ Probability of moving to Node $i$ from Node $k$
 ## Observations
 
 - The agent performs very well, considering the environment provides only partial information.
-- The win rate for 150 timesteps is on average 83.5%.
+- The win rate for 150 timesteps is on average 83.5%., with a standard deviation of 3.989209584.
 - The loss rates are:
-    - 0% due to timeout.
-    - 16.5% due to death from predator.
+    - 0% due to timeout, with a standard deviation of 0.
+    - 16.5% due to death from predator, with a standard deviation of 3.989209584.
 - The agent was able to identify the prey node correctly about 3.9295887% of the timesteps.
 
 ## Inference
@@ -198,10 +198,10 @@ where $P(prey_i|prey_k) =$ Probability of moving to Node $i$ from Node $k$
 ## Observations
 
 - Agent 4 performs really good, and better than Agent3 on average.
-- The win rate for 150 timesteps is on average 95.3%.
+- The win rate for 150 timesteps is on average 95.3%, with a standard deviation of 2.614943792.
 - The loss rates are:
-    - 0.2% due to timeout.
-    - 4.5% due to death from predator.
+    - 0.2% due to timeout, with a standard deviation of 0.406838102.
+    - 4.5% due to death from predator, with a standard deviation of 2.542738139.
 - The agent was able to identify the prey node correctly about 4.7386829% of the timesteps.
 
 ## Inference
@@ -284,10 +284,10 @@ where $P(predator_i|predator_k) =$ Probability of moving to Node $i$ from Node $
 ## Observations
 
 - The agent performs decently well, considering the environment provides only partial information.
-- The win rate for 150 timesteps is on average 80.63333333%.
+- The win rate for 150 timesteps is on average 80.63333333%, with a standard deviation of 4.270858214.
 - The loss rates are:
-    - 0% due to timeout.
-    - 19.36666667% due to death from predator.
+    - 0% due to timeout, with a standard deviation of 0.
+    - 19.36666667% due to death from predator, with a standard deviation of 4.270858214.
 - The agent was able to identify the predator node correctly about 58.0649433% of the timesteps.
 
 ## Inference
@@ -315,10 +315,10 @@ where $P(predator_i|predator_k) =$ Probability of moving to Node $i$ from Node $
 - `Agent6` and `Agent5` perform well despite not knowing the position of the predator.
 - Agent 6 performs relatively better than Agent 5.
 - However they are relatively worse than `Agent3` and `Agent4`.
-- The win rate for 150 timesteps is on average 85.8%.
+- The win rate for 150 timesteps is on average 85.8%, with a standard deviation of 3.356927988.
 - The loss rates are:
-    - 0.066666667% due to timeout.
-    - 14.13333333% due to death from predator.
+    - 0.066666667% due to timeout, with a standard deviation of 0.253708132.
+    - 14.13333333% due to death from predator, with a standard deviation of 3.339763912.
 - The agent was able to identify the predator node correctly about 65.3833067% of the timesteps.
 
 ## Inference
@@ -346,12 +346,12 @@ where $P(predator_i|predator_k) =$ Probability of moving to Node $i$ from Node $
 ## Observations
 
 - The agent performs decently well, considering the environment provides only partial information.
-- The win rate of the agent is on average 78.43333333%.
+- The win rate of the agent is on average 78.43333333%, with a standard deviation of 3.918860965.
 - The loss rates are:
-    - 0.233333333% due to timeout.
-    - 21.33333333% due to death from predator.
+    - 0.233333333% due to timeout, with a standard deviation of 0.430183067.
+    - 21.33333333% due to death from predator, with a standard deviation of 3.817684199.
 - The agent was able to identify the prey node correctly about 0.9898483% of the timesteps.
-- The agent was able to identify the predator node correctly about 45.1441661% of the timesteps.
+- The agent was able to identify the predator node correctly about 45.1441661% of the timesteps .
 
 ## Inference
 
@@ -374,10 +374,10 @@ where $P(predator_i|predator_k) =$ Probability of moving to Node $i$ from Node $
 
 - Agent 8 performs neck-to-neck with Agent 7. Both perform considerably well.
 - When the timesteps are more, Agent 8 performs relatively better than Agent7.
-- The win rate for 150 timesteps is on average 79.53333333%.
+- The win rate for 150 timesteps is on average 79.53333333%, with a standard deviation of 3.963047707.
 - The loss rates are:
-    - 0.466666667% due to timeout.
-    - 20% due to death from predator.
+    - 0.466666667% due to timeout, with a standard deviation of 0.730296743.
+    - 20% due to death from predator, with a standard deviation of 4.185360364.
 - The agent was able to identify the prey node correctly about 1.7391908% of the timesteps.
 - The agent was able to identify the predator node correctly about 47.824446% of the timesteps.
 
@@ -415,21 +415,21 @@ $$P(prey_i| \neg{survey_j}) = { P(prey_i) \times 0.1 \over 1 - 0.9 \times P(surv
 
 ## Observations (Faulty survey)
 
-- The win rate of the agent is on average 58.76666667%.
+- The win rate of the agent is on average 58.76666667%, with a standard deviation of 5.556501835.
 - The loss rates are:
-    - 0% due to timeout.
-    - 41.83333333% due to death from predator.
+    - 0% due to timeout, with a standard deviation of 0.
+    - 41.83333333% due to death from predator, with a standard deviation of 5.657362206.
 - The agent was able to identify the prey node correctly about 3.298517493% of the timesteps.
 - The agent was able to identify the predator node correctly about 37.14797583% of the timesteps.
 - 
 ## Observations (Faulty survey fix)
 
-- The win rate of the agent is on average %.
+- The win rate of the agent is on average 68.6%, with a standard deviation of 4.825221096.
 - The loss rates are:
-    - % due to timeout.
-    - % due to death from predator.
-- The agent was able to identify the prey node correctly about % of the timesteps.
-- The agent was able to identify the predator node correctly about % of the timesteps.
+    - 0.033333333% due to timeout, with a standard deviation of 0.182574186.
+    - 31.36666667% due to death from predator, with a standard deviation of 4.802896636.
+- The agent was able to identify the prey node correctly about 3.223071% of the timesteps.
+- The agent was able to identify the predator node correctly about 37.1444415% of the timesteps.
 ## Agent 8 (with faulty survey and its fix)
 
 ## Design
@@ -438,26 +438,27 @@ $$P(prey_i| \neg{survey_j}) = { P(prey_i) \times 0.1 \over 1 - 0.9 \times P(surv
 
 ### Observations (Faulty survey)
 
-- The win rate of the agent is on average 52.1%.
+- The win rate of the agent is on average 52.1%, with a standard deviation of 4.088250617.
 - The loss rates are:
-    - 0.066666667% due to timeout.
-    - 47.83333333% due to death from predator.
+    - 0.066666667% due to timeout, with a standard deviation of 0.253708132.
+    - 47.83333333% due to death from predator, with a standard deviation of 4.052103186.
 - The agent was able to identify the prey node correctly about 2.434142243% of the timesteps.
 - The agent was able to identify the predator node correctly about 30.30457358% of the timesteps.
 
 ### Observations (Faulty survey fix)
 
-- The win rate of the agent is on average %.
+- The win rate of the agent is on average 68.73333333%, with a standard deviation of 3.341828256.
 - The loss rates are:
-    - % due to timeout.
-    - % due to death from predator.
-- The agent was able to identify the prey node correctly about % of the timesteps.
-- The agent was able to identify the predator node correctly about % of the timesteps.
+    - 0.2% due to timeout, with a standard deviation of 0.406838102.
+    - 31.06666667% due to death from predator, with a standard deviation of 3.362401988.
+- The agent was able to identify the prey node correctly about 0.906667% of the timesteps.
+- The agent was able to identify the predator node correctly about 37.9225109% of the timesteps.
 
 ## Details
 
 - All agents were run 100 iterations per run.
 - Each Iteration was run on a different graph
+- For analysis, the timesteps were set to 50 and gradually increased by 50 until 200.
 - 30 total runs.
 
 ## Results
