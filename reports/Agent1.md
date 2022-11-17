@@ -1,4 +1,4 @@
-# Agent 1
+## Agent 1
 
 ## Design
 
@@ -21,7 +21,10 @@
 ## Observations
 
 - The conditions enable the agent to frequently catch the prey and not die.
-- The win rate is on average _.
+- The win rate for 150 timesteps is on average 87.03333333%.
+- The loss rates are:
+    - 0% due to timeout.
+    - 12.96666667% due to death from predator.
 
 ## Inference
 

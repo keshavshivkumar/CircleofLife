@@ -1,4 +1,4 @@
-# Agent 7 (with faulty survey)
+## Agent 7 (with faulty survey)
 
 ## Design
 
@@ -28,3 +28,10 @@ $$P(prey_i| \neg{survey_j}) = { P(prey_i) \times 0.1 \over 1 - 0.9 \times P(surv
 
 
 ## Observations
+
+- The win rate of the agent is on average _%.
+- The loss rates are:
+    - _% due to timeout.
+    - _% due to death from predator.
+- The agent was able to identify the prey node correctly about _% of the timesteps.
+- The agent was able to identify the predator node correctly about _% of the timesteps.

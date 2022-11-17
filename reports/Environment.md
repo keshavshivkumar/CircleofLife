@@ -15,6 +15,14 @@
     - a list of nodes (to keep track of the node positions to maintain probabilities for)
     - ints for storing the correct prey/predator belief, for analysis
 
+- The prey is built from the `Prey` class.
+- The prey simply chooses an adjacent neighbor to move to at each timestep or chooses not to move. The choice is arbitrary.
+- There are 2 types of predators: `Predator` and `DistractedPredator`.
+    - The default predator is used against Agents 1-4.
+    - The distracted predator is used against Agents 5-8.
+- The agent node is a heat-seeking node for the predator; every timestep, the predator attempts to move towards the agent.
+- The distracted predator has a chance of fumbling and getting distracted 40% of the time, moving to one of its neighbors instead of towards the agent.
+
 ## Implementation
 
 - Graph traversal was done using BFS. Using BFS gives the shortest path between 2 nodes.

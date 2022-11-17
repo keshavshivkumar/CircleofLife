@@ -2,7 +2,7 @@
 
 ## Design
 
-- `Agent7` is expected to catch the prey, not knowing where the prey and predator are exactly in the environment.
+- `Agent7` is expected to catch the prey, not knowing where the prey and predator are exactly in the environment (the agent knows where the predator is in the first timestep only).
     
 - Before a node is picked to survey, the probability of the agent node is distributed to the rest of the nodes (since the predator is not present in that node). 
   
@@ -18,9 +18,12 @@
 ## Observations
 
 - The agent performs decently well, considering the environment provides only partial information.
-- The win rate of the agent is on average _.
-- The agent was able to identify the prey node correctly about _% of the timesteps
-- The agent was able to identify the predator node correctly about _% of the timesteps
+- The win rate of the agent is on average 78.43333333%.
+- The loss rates are:
+    - 0.233333333% due to timeout.
+    - 21.33333333% due to death from predator.
+- The agent was able to identify the prey node correctly about 0.9898483% of the timesteps.
+- The agent was able to identify the predator node correctly about 45.1441661% of the timesteps.
 
 ## Inference
 

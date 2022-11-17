@@ -14,7 +14,10 @@
 ## Observations
 
 - Agent 2 catches the prey more frequently than Agent 1.
-- The win rate is on average _.
+- The win rate for 150 timesteps is on average 96.36666667%.
+- The loss rates are:
+    - 0.1% due to timeout.
+    - 3.533333333% due to death from predator.
 
 ## Inference
 

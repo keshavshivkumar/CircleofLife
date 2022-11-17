@@ -47,11 +47,14 @@ where $P(prey_i|prey_k) =$ Probability of moving to Node $i$ from Node $k$
 
 ## Observations
 
-- The agent performs considerably well, considering the environment provides only partial information.
-- The win rate of the agent is on average _.
-- The agent was able to identify the prey node correctly about _% of the timesteps
+- The agent performs very well, considering the environment provides only partial information.
+- The win rate for 150 timesteps is on average 83.5%.
+- The loss rates are:
+    - 0% due to timeout.
+    - 16.5% due to death from predator.
+- The agent was able to identify the prey node correctly about 3.9295887% of the timesteps.
 
 ## Inference
 
-- Not knowing where the prey is does not affect the success of the agent, since knowing where the predator is means that the agent moves precisely away from the predator as much as possible.
+- Not knowing where the prey is barely affects the success of the agent, since knowing where the predator is means that the agent moves precisely away from the predator as much as possible.
 - It is difficult to keep track of the prey once discovered, since its movement is random.

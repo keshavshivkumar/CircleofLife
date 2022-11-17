@@ -2,7 +2,7 @@
 
 ## Design
 
-- `Agent5` is expected to catch the prey, not knowing where the predator is exactly in the environment.
+- `Agent5` is expected to catch the prey, not knowing where the predator is exactly in the environment (the agent only knows in the first timestep where the predator is).
     
 - Before a node is picked to survey, the probability of the agent node is distributed to the rest of the nodes (since the predator is not present in that node). 
   
@@ -60,7 +60,6 @@ where $P(predator_i|predator_k) =$ Probability of moving to Node $i$ from Node $
 
 - In the beginning, the agent knows where the predator is and prob of that node is initialized to 1. This is carried out by the `initialize_belief_with_position` function.
 
-
 - The beliefs are stored in a dictionary of the `Agent5` class. Only the nodes with non-zero belief are stored in the dictionary.
   
 - The agent surveys a node using `survey_node()`.
@@ -72,9 +71,13 @@ where $P(predator_i|predator_k) =$ Probability of moving to Node $i$ from Node $
 ## Observations
 
 - The agent performs decently well, considering the environment provides only partial information.
-- The win rate of the agent is on average _.
-- The agent was able to identify the prey node correctly about _% of the timesteps
+- The win rate for 150 timesteps is on average 80.63333333%.
+- The loss rates are:
+    - 0% due to timeout.
+    - 19.36666667% due to death from predator.
+- The agent was able to identify the predator node correctly about 58.0649433% of the timesteps.
 
 ## Inference
 
 - Not knowing where the predator significantly affects the success of the agent, since knowing where the predator means that the agent moves precisely away from the predator.
+- Figuring out the position of the predator is easier than the prey, since its choice of movement is not completely random.

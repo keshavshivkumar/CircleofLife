@@ -11,6 +11,7 @@
 
 ## Analysis
 
+- The smallest number of edges you can add in the graph is 10.
 
 ## Workload Split-up
 

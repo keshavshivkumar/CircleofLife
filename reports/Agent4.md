@@ -14,8 +14,12 @@
 
 ## Observations
 
-- The agent on average knows where the prey is _.
-- The win rate is on average _.
+- Agent 4 performs really good, and better than Agent3 on average.
+- The win rate for 150 timesteps is on average 95.3%.
+- The loss rates are:
+    - 0.2% due to timeout.
+    - 4.5% due to death from predator.
+- The agent was able to identify the prey node correctly about 4.7386829% of the timesteps.
 
 ## Inference
 
