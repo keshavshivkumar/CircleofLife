@@ -17,38 +17,22 @@
 
 
 - The node with highest $P(Prey_i)$ is assumed to be the prey, and the agent moves accordingly.
-- After the agent makes its move, the beliefs are propogated to the non-zero beliefs in the dictionary.
+- After the agent makes its move, the beliefs are propagated to the non-zero beliefs in the dictionary.
 
 ### Belief Distribution
-$$ 
-    P(prey_i| \neg{prey_j}) = {P(prey_i, prey_j)\over P(\neg{prey_j}) }
-    ; i \neq j
-$$
+$$P(prey_i| \neg{prey_j}) = {P(prey_i, prey_j) \over{P(\neg{prey_j}) }}; i \neq j$$
  
-$$ 
-    = {P(prey_i)\times P(\neg{prey_j}| prey_i) \over P(\neg{prey_j})}
-$$
+$$= {P(prey_i)\times P(\neg{prey_j}| prey_i) \over P(\neg{prey_j})}$$
 
-$$
-    = {
-        P(prey_i)\times 1 \over 
-        \sum P(prey_i)*p(\neg{prey_j}|prey_i)
-    }
-$$
+$$= {P(prey_i)\times 1 \over \sum P(prey_i)*p(\neg{prey_j}|prey_i)}$$
 
-$$
-    = { P(prey_i) \over 1 - P(prey_j)}
-$$
+$$= { P(prey_i) \over 1 - P(prey_j)}$$
 
 - If $P(prey_i) = 1$, then $P(prey_j) = 0$, $\forall j$, ${j \neq i }$
 
 ### Transition Update
 
-$$
-    P(prey_{i}) = {
-        \sum_{k=1}^{n} P(prey_k) \times P(prey_{i}|prey_k)
-    }
-$$
+$$P(prey_{i}) = {       \sum_{k=1}^{n} P(prey_k) \times P(prey_{i}|prey_k)    }$$
 where $P(prey_i|prey_k) =$ Probability of moving to Node $i$ from Node $k$
 
 ## Implementation
