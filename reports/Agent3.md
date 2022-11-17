@@ -58,8 +58,8 @@ where $P(prey_i|prey_k) =$ Probability of moving to Node $i$ from Node $k$
 - The agent surveys a node using `survey_node()`.
 - If the prey is present in that node, then the dictionary is reset and only that node is added to the dictionary with a probability of 1.
 - Otherwise, the node picked gets removed from the belief dictionary, and its probability is distributed to the rest of the nodes.
-- The agent moves assuming the node to have the prey, and follows the set of rules defined in `Agent1` (the location of the predator is known).
-- The belief of the position the agent moves to is propogated to the rest of the nodes in the belief dictionary.
+- The agent moves assuming the node with the highest $P(prey_i)$ to have the prey, and follows the set of rules defined in `Agent1` (the location of the predator is known).
+- The belief of the prey to is propogated to the rest of the nodes in the belief dictionary.
 
 ## Observations
 
