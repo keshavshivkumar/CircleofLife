@@ -74,7 +74,7 @@ class DataCollection():
         self.logger.info(log_string)
 
     def init_logger(self):
-        log_path = self.dir + 'collecteddatafault200.csv'
+        log_path = self.dir + 'collecteddatafault50.csv'
         ch = logging.FileHandler(log_path)
         ch.setFormatter(logging.Formatter('%(message)s'))
         self.logger.addHandler(ch)

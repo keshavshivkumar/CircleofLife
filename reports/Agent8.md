@@ -25,4 +25,4 @@
 ## Inference
 
 - Not knowing where the predator significantly affects the success of the agent, since knowing where the predator means that the agent moves precisely away from the predator.
-- Not knowing where both the prey and predator are minimize the gap of success between Agent 7 and Agent 8.
+- Not knowing where both the prey and predator are minimizes the gap of success between Agent 7 and Agent 8.

@@ -1,4 +1,4 @@
-## Agent 7 (with faulty survey)
+# Agent 7 (with faulty survey and fix)
 
 ## Design
 
@@ -23,15 +23,15 @@ $$P(prey_i| \neg{survey_j}) = { P(prey_i) \times 1 \over 1 - 0.9 \times P(survey
 
 $$P(prey_i| \neg{survey_j}) = { P(prey_i) \times 0.1 \over 1 - 0.9 \times P(survey_j)}; i = j$$
 
-- Transition probabilities remain unchanged
+- Transition probabilities remain unchanged from `Agent 7`
 
 
 
 ## Observations
 
-- The win rate of the agent is on average _%.
+- The win rate of the agent is on average 58.76666667%.
 - The loss rates are:
-    - _% due to timeout.
-    - _% due to death from predator.
-- The agent was able to identify the prey node correctly about _% of the timesteps.
-- The agent was able to identify the predator node correctly about _% of the timesteps.
+    - 0% due to timeout.
+    - 41.83333333% due to death from predator.
+- The agent was able to identify the prey node correctly about 3.298517493% of the timesteps.
+- The agent was able to identify the predator node correctly about 37.14797583% of the timesteps.

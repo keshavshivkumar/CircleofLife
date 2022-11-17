@@ -17,6 +17,8 @@
 - After the agent makes its move, the beliefs are propogated to the non-zero beliefs in the dictionary.
 
 ### Belief Distribution
+
+- Belief update remains the same between `Agent 3` and `Agent 5`
 $$ 
     P(predator_i| \neg{predator_j}) = {P(predator_i, predator_j)\over P(\neg{predator_j}) }
     ; i \neq j
