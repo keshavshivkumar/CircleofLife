@@ -62,7 +62,7 @@
 
 
 
-## Agent 1
+# Agent 1
 
 ## Design
 
@@ -120,7 +120,7 @@
 
 - In an environment with the necessary information, Agent 2 performs exceptionally well compared to Agent 1.
 
-## Agent 3
+# Agent 3
 
 ## Design
 
@@ -209,7 +209,7 @@ where $P(prey_i|prey_k) =$ Probability of moving to Node $i$ from Node $k$
 - In a partial information environment, Agent 4 fares well.
 - Both Agent 3 and Agent 4 have reasonably good success rates; knowing where the predator is ensures that the agent will not die that easily.
 
-## Agent 5
+# Agent 5
 
 ## Design
 
@@ -256,9 +256,7 @@ $$
 - Distracted Predator moves to close in distance to agent at Prob = 0.6, $P(optimal) = 0.6$. It moves randomly to any of its neighbors at Prob = 0.4, $P(distracted) = 0.4$
 $$
     P(predator_{i}) = 
-        \sum_{k=1}^{n} P(Predator_{k}) \times P(predator_{i}|predator_k)
-    
-$$
+        \sum_{k=1}^{n} P(Predator_{k}) \times P(predator_{i}|predator_k)$$
 
 $$
     = 0.6 \sum_{k=1}^{n} optimal(P(predator_i|predator_j))
@@ -279,7 +277,7 @@ where $P(predator_i|predator_k) =$ Probability of moving to Node $i$ from Node $
 - If the predator is present in that node, then the dictionary is reset and only that node is added to the dictionary with a probability of 1.
 - Otherwise, the node picked gets removed from the belief dictionary, and its probability is distributed to the rest of the nodes.
 - The agent moves assuming the node with highest $P(predator_i)$ to have the predator, and follows the set of rules defined in `Agent1` (the location of the prey is known).
-- The belief of the predator is propogated to the rest of the nodes in the belief dictionary.
+- The belief of the predator is propagated to the rest of the nodes in the belief dictionary.
 
 ## Observations
 
@@ -296,7 +294,7 @@ where $P(predator_i|predator_k) =$ Probability of moving to Node $i$ from Node $
 - Figuring out the position of the predator is easier than the prey, since its choice of movement is not completely random.
 
 
-## Agent 6
+# Agent 6
 
 ## Design
 
@@ -326,7 +324,7 @@ where $P(predator_i|predator_k) =$ Probability of moving to Node $i$ from Node $
 - The success rates Agent 5 and 6 suffer due to the lack of knowledge of the predator.
 - Figuring out the position of the predator is easier than the prey, since its choice of movement is not completely random.
 
-## Agent 7
+# Agent 7
 
 ## Design
 
@@ -357,7 +355,7 @@ where $P(predator_i|predator_k) =$ Probability of moving to Node $i$ from Node $
 
 - Not knowing where the predator significantly affects the success of the agent, since knowing where the predator means that the agent moves precisely away from the predator.
 
-## Agent 8
+# Agent 8
 
 ## Design
 
@@ -430,7 +428,9 @@ $$P(prey_i| \neg{survey_j}) = { P(prey_i) \times 0.1 \over 1 - 0.9 \times P(surv
     - 31.36666667% due to death from predator, with a standard deviation of 4.802896636.
 - The agent was able to identify the prey node correctly about 3.223071% of the timesteps.
 - The agent was able to identify the predator node correctly about 37.1444415% of the timesteps.
-## Agent 8 (with faulty survey and its fix)
+
+
+# Agent 8 (with faulty survey and its fix)
 
 ## Design
 
@@ -454,7 +454,7 @@ $$P(prey_i| \neg{survey_j}) = { P(prey_i) \times 0.1 \over 1 - 0.9 \times P(surv
 - The agent was able to identify the prey node correctly about 0.906667% of the timesteps.
 - The agent was able to identify the predator node correctly about 37.9225109% of the timesteps.
 
-## Details
+# Details
 
 - All agents were run 100 iterations per run.
 - Each Iteration was run on a different graph
