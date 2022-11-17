@@ -29,14 +29,21 @@ class DataCollection():
         win = np.zeros(num_agents)
         loss2 = np.zeros(num_agents)
         agent_caught = np.zeros(num_agents)
-        for x in range(iterations):
-            agents = [Agent1(), Agent2(), Agent3(), Agent4(), Agent5(), Agent6(), Agent7(), Agent7FaultyFix(), Agent8(),  Agent8FaultyFix()]
+        x = 0
+        while x < iterations:
+            agents = [Agent7Faulty(), Agent8Faulty()]
             victories=[]
             correct_prey_guess={agent:0 for agent in agents}
             correct_predator_guess={agent:0 for agent in agents}
             print(f'iteration {x+1}')
             for agent in agents:
-                v, timesteps = run_game(agent)
+                v = (False, False)
+                timesteps = 0
+                try:
+                    v, timesteps = run_game(agent)
+                except:
+                    x-=1
+                    continue
                 victories.append(v)
                 prey_guess_rate=agent.correct_prey_guess/timesteps
                 predator_guess_rate=agent.correct_predator_guess/timesteps
@@ -50,6 +57,8 @@ class DataCollection():
                     loss2[i] += 1
                 elif victory[0] == False:
                     agent_caught[i] += 1
+
+            x+=1
         win_string=""
         timeout_string=""
         agent_death=""
@@ -65,7 +74,7 @@ class DataCollection():
         self.logger.info(log_string)
 
     def init_logger(self):
-        log_path = self.dir + 'collecteddata200.csv'
+        log_path = self.dir + 'collecteddatafault200.csv'
         ch = logging.FileHandler(log_path)
         ch.setFormatter(logging.Formatter('%(message)s'))
         self.logger.addHandler(ch)
